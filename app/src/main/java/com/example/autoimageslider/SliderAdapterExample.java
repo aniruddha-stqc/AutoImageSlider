@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
@@ -25,7 +26,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
     }
 
     @Override
-    public void onBindViewHolder(SliderAdapterVH viewHolder, int position) {
+    public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
         viewHolder.textViewDescription.setText("This is slider item " + position);
 
         switch (position) {
@@ -46,6 +47,13 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 break;
 
         }
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
